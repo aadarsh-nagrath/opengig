@@ -10,7 +10,7 @@ export const getTasks = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).send(error);
   }
-};
+}; 
 
 // Add a new task
 export const addTask = async (req: Request, res: Response) => {
@@ -25,22 +25,30 @@ export const addTask = async (req: Request, res: Response) => {
 };
 
 export const updateTask = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const { action } = req.body;
-  
-    try {
-      const task = await Task.findById(id);
-      if (task) {
-        if (action === "start") task.isRunning = true;
-        if (action === "pause") task.isRunning = false;
-        if (action === "complete") task.isCompleted= true; 
-        await task.save();
-        res.json(task);
-      } else {
-        res.status(404).send("Task not found");
+  const { id } = req.params;
+  const { action } = req.body;
+
+  try {
+    const task = await Task.findById(id);
+    if (task) {
+      if (action === "start") {
+        task.isRunning = true;
+        task.isComplete = false;
       }
-    } catch (error) {
-      res.status(400).send(error);
+      if (action === "pause") {
+        task.isRunning = false;
+      }
+      if (action === "complete") {
+        task.isComplete = true;
+        task.isRunning = false;
+      }
+      await task.save();
+      res.json(task);  // Send the updated task back
+    } else {
+      res.status(404).send("Task not found");
     }
-  };
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
   

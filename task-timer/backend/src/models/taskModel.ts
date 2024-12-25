@@ -1,19 +1,19 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
-interface ITask extends Document {
+interface Task extends Document {
   name: string;
   elapsedTime: number;
   isRunning: boolean;
-  isCompleted: boolean;
+  isComplete: boolean;
 }
 
-const taskSchema = new mongoose.Schema<ITask>({
+const taskSchema = new Schema<Task>({
   name: { type: String, required: true },
   elapsedTime: { type: Number, default: 0 },
   isRunning: { type: Boolean, default: false },
-  isCompleted: { type: Boolean, default: false },
+  isComplete: { type: Boolean, default: false },
 });
 
-const Task = mongoose.model<ITask>("Task", taskSchema);
+const Task = mongoose.model<Task>('Task', taskSchema);
 
 export default Task;

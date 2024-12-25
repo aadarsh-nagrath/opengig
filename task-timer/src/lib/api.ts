@@ -13,9 +13,10 @@ export const fetchTask = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching tasks:', error);
-    throw error;
+    throw new Error('Failed to fetch tasks');
   }
 };
+
 
 export const addTask = async (name: string) => {
   try {
