@@ -44,3 +44,8 @@ USe -
 MONGO_URI=mongodb+srv://anagrath1:opengig@cluster0.b9r9g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 AND PORT=5000 
 have added env.example in backend  folder
+
+
+DEPLOYED LINK - https://tasktimer450.vercel.app
+
+![{E27B0EEE-F6FF-49E2-B602-9A7CE45D6864}](https://github.com/user-attachments/assets/24916f33-948f-4089-adc6-e61561205fa1)
